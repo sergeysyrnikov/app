@@ -9,10 +9,10 @@ SECRET_KEY = 'django-insecure-wa2wzyoq!qv_h=ff)bc4g^&+vfwmgno^9r6f=kg7as$vwcck8u
 # SECRET_KEY = "Erl;lkkl;khjknlkmk"
 # DEBUG = int(os.environ.get("DEBUG", default=0))
 
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
-ALLOWED_HOSTS = "*"
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = "*"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -67,12 +67,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'upload',
-        'USER': 'postgres',
-        'PASSWORD': '34ubitav',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 
